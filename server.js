@@ -15,8 +15,9 @@ app.get('/items', (req, res) => {
 });
 
 app.post('/new-item', (req, res) => {
-	const key = req.body.key;
-	const value = req.body.value;
+	const key = req.body.id;
+	order.push(key);
+  const value = req.body;
 	items[key] = value;
 	res.end('successfully added');
 });
