@@ -1,29 +1,27 @@
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchData } from './actions';
 
-class List extends Component {
+class ItemDetail extends Component {
   componentDidMount() {
     this.props.fetchData();
     //updates state - send http request,  updated state available after promise fulfilled
   }
   render() {
     return  (
-    <div className="list">
+    <div>
+      <ul>
         {this.props.list.map((item, i) => {
           return (
-            <div key={i}>
-              <span>How do I </span>
+            <li key={i}>
               <Link to="/">
                 {item.actionName}
               </Link>
-              <span> {item.actionObject} in {item.actionWhere} ?</span>
-
-            </div>
+            </li>
             );
           })}
+      </ul>
     </div>
     );
   }
@@ -34,7 +32,6 @@ const mapStateToProps = (state) => {
     list: state.list,
   };
 };
-
 
 export default connect(mapStateToProps, { fetchData })(List);
 
