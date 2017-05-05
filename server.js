@@ -19,7 +19,8 @@ app.post('/new-item', (req, res) => {
 	order.push(key);
   const value = req.body;
 	items[key] = value;
-	res.end('successfully added');
+	const values = Object.keys(items).map(key => items[key]);
+	res.send(values);
 });
 
 app.get('/items/:id', (req, res) => {
