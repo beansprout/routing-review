@@ -1,0 +1,14 @@
+  {this.props.list.map((item, i) => {
+          return (
+            <div key={i}>
+              <span>How do I </span>
+              <Link to="/">
+                {item.actionName}
+              </Link>
+              <span> {item.actionObject} in {item.actionWhere} ?</span>
+              </div>
+            );
+          })}
+
+import List from './List';
+import ListForm from './ListForm';

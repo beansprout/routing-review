@@ -12,8 +12,8 @@ export const fetchData = () => {
 
 export const ADD_DATA = 'ADD_DATA';
 
-export const addData = (actionName, actionObject, actionWhere, instructionData ) => {
-  const promise = axios.post('http://localhost:5000/', { actionName, actionObject, actionWhere, instructionData});
+export const addData = (formData) => {
+  const promise = axios.post('http://localhost:5000/new-item', formData);
   return {
     type: ADD_DATA,
     payload: promise,
