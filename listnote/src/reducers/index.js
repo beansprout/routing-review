@@ -4,7 +4,7 @@ import listReducer from './listReducer';
 
 const rootReducer = combineReducers({
    list: listReducer,
-   form: formReducer,
+   listForm: formReducer,
 });
 
 export default rootReducer;

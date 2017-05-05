@@ -12,8 +12,7 @@ export const fetchData = () => {
 
 export const ADD_DATA = 'ADD_DATA';
 
-export const addData = ( formData ) => {
-  const promise = axios.post('http://localhost:5000/', {  formData});
+export const addData = ( formData )
   return {
     type: ADD_DATA,
     payload: promise,
