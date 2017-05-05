@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-class ListForm extends Component {
-    submit = (values) =>  {
-      console.log('values: ', values);
-    }
-  render() {
-    return (
+const submit = (values) =>  {
+  console.log('submit inside form')
+  console.log('values: ', values);
+}
+
+const ListFormFunc = ({ handleSubmit }) => (
       //handleSubmit is a redux form thing used at the end when form is submitted - its how reduxForm knows you are done. Doesn't do the actual 'submitting'
       // to actually submit you have to use the onSubmit prop
-      <form onSubmit={ this.props.handleSubmit(this.submit) }>
+      <form onSubmit={ handleSubmit(submit) }>
         <div>
           <label htmlFor="actionName">Do</label>
           <Field name="actionName" component="input" type="text"/>
@@ -28,11 +28,12 @@ class ListForm extends Component {
         </div>
         <button type="submit">Submit</button>
       </form>
-  )}
-}
-//Decorate the form component
-ListForm = reduxForm({
+)
+
+
+//Decorate the form
+const ListForm = reduxForm({
   form: 'list' // a unique name for this form
-})(ListForm);
+})(ListFormFunc);
 
 export default ListForm;
