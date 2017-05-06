@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+// eslint-disable-next-line
 import { Link } from 'react-router-dom';
 import { fetchData } from './actions';
 
@@ -12,21 +13,19 @@ class List extends Component {
     console.log(this.props.list);
     return  (
     <div className="list">
-      <div>
-        {this.props.list.map((item) => {
+        {this.props.list.map((item, i) => {
           return (
-          <ul>
-          <li>{item.actionName}</li>
-          <li>{item.actionObject}</li>
-          <li>{item.actionWhere}</li>
-          </ul>
-          )
-        })};
-      </div>
-     </div>
-    )
-    }
-  };
+            <div key={i}>
+              <span>How do I </span>
+              <span> {item.actionObject} in {item.actionWhere} ?</span>
+
+            </div>
+            );
+          })}
+    </div>
+    );
+  }
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -37,8 +36,10 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, { fetchData })(List);
 
 
+        // {this.props.list.map((item) => {
 
 
+      // {this.props.list.map((item) => {
       // <span>How do I </span>
       // <Link to="/">
       // {item.actionName}
