@@ -4,14 +4,26 @@ import { Field, reduxForm } from 'redux-form';
 const submit = (values) =>  {
   console.log('submit inside form')
   console.log('values: ', values);
-}
+};
+
+// outside your render() method
+// renderField checks the input and if user touched the inputfield and there is an error say error in span element.
+const renderField = ({ input, meta: { touched, error } }) => (
+    <div className="input-row">
+      <label>[label]</label>
+      <input {...input} type="text"/>
+      {touched && error &&
+       <span className="error">{error}</span>}
+    </div>
+
+// inside your render() method
+//<Field name="myField" component={renderField}/>
+
 const ListFormFunc = ({ handleSubmit }) => (
-      //handleSubmit is a redux form thing used at the end when form is submitted - its how reduxForm knows you are done. Doesn't do the actual 'submitting'
-      // to actually submit you have to use the onSubmit prop
       <form onSubmit={ handleSubmit(submit) }>
         <div>
           <label htmlFor="actionName">Do</label>
-          <Field name="actionName" component="input" type="text"/>
+          <Field name="actionName" component="renderField" type="text"/>
         </div>
         <div>
           <label htmlFor="actionObject">What</label>
@@ -29,10 +41,10 @@ const ListFormFunc = ({ handleSubmit }) => (
       </form>
 )
 
-
 //Decorate the form
 const ListForm = reduxForm({
-  form: 'listForm' // a unique name for this form
+  form: 'listForm',
+  // a unique name for this form
 })(ListFormFunc);
 
 export default ListForm;
